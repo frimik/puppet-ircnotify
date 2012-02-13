@@ -33,10 +33,12 @@
 #
 class ircnotify (
   $channel  = $ircnotify::params::channel,
-  $host     = $ircnotify::params::channel,
-  $port     = $ircnotify::params::channel
+  $host     = $ircnotify::params::host,
+  $port     = $ircnotify::params::port
 ) inherits ircnotify::params {
 
+  $enabled = true
+  
   include ircnotify::packages
 
   # Definition: privmsg
@@ -73,9 +75,9 @@ class ircnotify (
   #
   define privmsg (
     $message = $name,
-    $channel = $ircnotify::params::channel,
-    $host    = $ircnotify::params::host,
-    $port    = $ircnotify::params::port
+    $channel = $ircnotify::channel,
+    $host    = $ircnotify::host,
+    $port    = $ircnotify::port
   ) {
 
     # Combine the channel and message into an array of message parts.
