@@ -11,18 +11,27 @@
 # [*port*]
 # Default port where irc bot is listening.
 #
+# == Exposed variables
+# This module exposes the variable [*enabled*]. See Examples for usage.
+# 
 # == Examples
 #
+#   To enable the irc notifications to be used by other module include the
+#   following in your base manifests or module of choice:
+# 
 #   class {'ircnotify':
 #     channel => '#puppet',
 #     host    => 'ircbot.example.com',
 #     port    => 5050
 #   }
 #
-#   ircnotify::privmsg { "foo bar baz":
-#     channel => "#puppet",
-#   }
-#
+#  In your module/manifest of choice you can do the following:
+#  if $::ircnotify::enabled {
+#    ircnotify::privmsg { "foo bar baz":
+#      channel => "#puppet",
+#    }
+#  }
+# 
 # == Authors
 #
 # Mikael Fridh <mfridh@marinsoftware.com>
